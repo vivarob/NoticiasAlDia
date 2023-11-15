@@ -66,7 +66,7 @@ public class ListViewActivity extends AppCompatActivity implements RssReader.Rss
                         List<Noticia> noticiasDescargadas = new ArrayList<Noticia>();
                         int contador = 0;
                         for (RssItem item : rssFeed.getChannel().getItems()) {
-                            if (contador == 10){
+                            if (contador == 15){
                                 break;
                             } else {
                                 contador++;
@@ -99,13 +99,25 @@ public class ListViewActivity extends AppCompatActivity implements RssReader.Rss
                                     if (item.getMediaContent().getUrl().toLowerCase().endsWith(".jpg") || item.getMediaContent().getUrl().toLowerCase().endsWith(".jpeg")) {
                                         // Es una imagen (jpg)
                                         Bitmap bitmap = Picasso.get().load(item.getMediaContent().getUrl()).get();
+                                        noticia.setImagenUrl(item.getMediaContent().getUrl());
                                         noticia.setImagenBitmap(bitmap);
+                                        noticia.setMediaTitle(item.getMediaContent().getTitle());
+                                        noticia.setMediaDescription(item.getMediaContent().getDescription());
                                         Log.i("Tipo de contenido", "Imagen (jpg)");
+                                        Log.i("Tipo de contenido-titulo",item.getMediaContent().getTitle());
+                                        Log.i("Tipo de contenido-descripcion",item.getMediaContent().getDescription());
+                                        Log.i("Tipo de contenido-fecha",item.getMediaContent().getText());
                                     } else if (item.getMediaContent().getUrl().toLowerCase().endsWith(".mp4")) {
                                         // Es un video (mp4)
                                         noticia.setImagenUrl("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlkSxmWpyxD95Jw3u_HHvv3J9tcc2GLbec9Xl4Qemj9uR8ATjDH3fae98sfT2KtsIxuGg&usqp=CAU");
                                         noticia.setImagenBitmap(Picasso.get().load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlkSxmWpyxD95Jw3u_HHvv3J9tcc2GLbec9Xl4Qemj9uR8ATjDH3fae98sfT2KtsIxuGg&usqp=CAU").get());
+                                        noticia.setVideoUrl(item.getMediaContent().getUrl());
+                                        noticia.setMediaTitle(item.getMediaContent().getTitle());
+                                        noticia.setMediaDescription(item.getMediaContent().getDescription());
                                         Log.i("Tipo de contenido", "Video (mp4)");
+                                        Log.i("Tipo de contenido-titulo",item.getMediaContent().getTitle());
+                                        Log.i("Tipo de contenido-descripcion",item.getMediaContent().getDescription());
+                                        Log.i("Tipo de contenido-fecha",item.getMediaContent().getText());
                                     } else {
                                         // Puedes manejar otros tipos de contenido aquí si es necesario
                                         noticia.setImagenUrl("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlkSxmWpyxD95Jw3u_HHvv3J9tcc2GLbec9Xl4Qemj9uR8ATjDH3fae98sfT2KtsIxuGg&usqp=CAU");

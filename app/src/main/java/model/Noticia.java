@@ -11,6 +11,9 @@ public class Noticia implements Serializable {
     private String descripcion;
     private Date fecha;
     private String imagenUrl;
+    private String videoUrl;
+    private String mediaTitle;
+    private String mediaDescription;
     private String contenido;
     private transient Bitmap imagenBitmap; // transient para indicar que no será serializado directamente
 
@@ -71,15 +74,37 @@ public class Noticia implements Serializable {
         return imagenUrl;
     }
 
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
+    }
+    public String getVideoUrl() {
+        return videoUrl;
+    }
+
     public void setImagenUrl(String imagenUrl) {
         this.imagenUrl = imagenUrl;
     }
-
     public Bitmap getImagenBitmap() {
         return imagenBitmap;
     }
 
     public void setImagenBitmap(Bitmap imagenBitmap) {
         this.imagenBitmap = imagenBitmap;
+    }
+
+    public String getMediaTitle() {
+        return mediaTitle;
+    }
+
+    public void setMediaTitle(String mediaTitle) {
+        this.mediaTitle = mediaTitle;
+    }
+
+    public String getMediaDescription() {
+        return mediaDescription;
+    }
+
+    public void setMediaDescription(String mediaDescription) {
+        this.mediaDescription = mediaDescription;
     }
 }

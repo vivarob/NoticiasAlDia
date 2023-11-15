@@ -2,7 +2,9 @@ package es.upm.noticiasaldia;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +23,16 @@ public class FullViewNoticiaActivity extends AppCompatActivity {
         noticia = (Noticia) intent.getSerializableExtra("noticia");
         TextView tituloTextView = findViewById(R.id.TituloNoticiaFullView);
         tituloTextView.setText(noticia.getTitulo());
+
+        Button btn = findViewById(R.id.MediaButtonFullView);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent explicitIntent = new Intent(FullViewNoticiaActivity.this, MediaActivity.class);
+                explicitIntent.putExtra("noticia", noticia);
+                startActivity(explicitIntent);
+            }
+        });
         // Obtén la instancia de WebView desde tu diseño
         WebView webView = findViewById(R.id.webViewFullView);
 
@@ -34,5 +46,7 @@ public class FullViewNoticiaActivity extends AppCompatActivity {
 
         // Carga el contenido HTML en WebView
         webView.loadDataWithBaseURL(null, modifiedHtmlContent, "text/html", "UTF-8", null);
+
+
     }
 }

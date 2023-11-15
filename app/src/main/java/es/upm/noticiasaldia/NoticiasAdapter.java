@@ -7,8 +7,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.List;
+import java.util.Locale;
 
 import model.Noticia;
 
@@ -50,6 +52,8 @@ public class NoticiasAdapter extends BaseAdapter {
         ((TextView)convertView.findViewById(R.id.noticia_item_titulo)).setText(data.get(position).getTitulo());
         ((TextView)convertView.findViewById(R.id.noticia_item_fecha)).setText(formattedDate);
         ((TextView)convertView.findViewById(R.id.noticia_item_contenido)).setText(data.get(position).getDescripcion());
+
+
         return convertView;
     }
 }
