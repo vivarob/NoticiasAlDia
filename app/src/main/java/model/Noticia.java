@@ -1,13 +1,7 @@
 package model;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Base64;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -17,18 +11,28 @@ public class Noticia implements Serializable {
     private String descripcion;
     private Date fecha;
     private String imagenUrl;
+    private String contenido;
     private transient Bitmap imagenBitmap; // transient para indicar que no será serializado directamente
 
     public Noticia(){
 
     }
-    public Noticia(String titulo, String enlace, String descripcion, Date fecha, String imagenUrl, Bitmap imagenBitmap) {
+    public Noticia(String titulo, String enlace, String descripcion, Date fecha, String imagenUrl, Bitmap imagenBitmap, String Contenido) {
         this.titulo = titulo;
         this.enlace = enlace;
         this.descripcion = descripcion;
         this.fecha = fecha;
         this.imagenUrl = imagenUrl;
         this.imagenBitmap = imagenBitmap;
+        this.contenido = contenido;
+    }
+
+    public String getContenido() {
+        return contenido;
+    }
+
+    public void setContenido(String contenido) {
+        this.contenido = contenido;
     }
 
     public String getTitulo() {

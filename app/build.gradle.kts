@@ -32,6 +32,9 @@ android {
 }
 
 dependencies {
+    implementation ("com.squareup.okhttp3:okhttp:4.9.1")
+    implementation ("org.jsoup:jsoup:1.14.3")  // Para parsear HTML, útil en algunos feeds
+    implementation ("org.simpleframework:simple-xml:2.7.1")
     implementation("com.squareup.picasso:picasso:2.71828")
     implementation("com.github.bumptech.glide:glide:4.12.0")
     implementation("com.rometools:rome:1.15.0")

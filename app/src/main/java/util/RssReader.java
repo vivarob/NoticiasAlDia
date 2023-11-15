@@ -3,14 +3,12 @@ package util;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.rometools.rome.feed.synd.SyndEnclosure;
 import com.rometools.rome.feed.synd.SyndEntry;
 import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
 import com.squareup.picasso.Picasso;
-
 
 import org.jdom2.Element;
 
@@ -62,6 +60,8 @@ public class RssReader extends AsyncTask<String, Void, List<Noticia>> {
                             // Cargar el Bitmap para una imagen
                             try {
                                 noticia.setImagenBitmap(Picasso.get().load(mediaUrl).get());
+                                Log.i("RSSREADER", "Es una imagen");
+
                             } catch (IOException e) {
                                 Log.e(TAG, "Error loading image", e);
                             }
@@ -72,6 +72,14 @@ public class RssReader extends AsyncTask<String, Void, List<Noticia>> {
                             Log.i("RSSREADER", "Es un video");
                         }
                         break; // Terminar el bucle cuando se encuentre la URL de la imagen o el video
+                    }
+                    if ("encoded".equals(element.getName()) && "content".equals(element.getNamespacePrefix())) {
+                        String contenidoEncoded = element.getText();
+                        Log.i("RssReader",contenidoEncoded);
+                        // Aquí puedes procesar el contenido según tus necesidades
+                        noticia.setContenido(contenidoEncoded);
+                    } else {
+                        Log.i("RssReader","No entro en ninguna");
                     }
                 }
 

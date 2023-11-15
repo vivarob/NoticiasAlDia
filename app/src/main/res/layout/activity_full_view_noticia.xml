@@ -26,13 +26,14 @@
                 android:id="@+id/TituloNoticiaFullView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="24sp" />
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/ContenidoNoticiaFullView"
+            <WebView
+                android:id="@+id/webViewFullView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
     </ScrollView>
