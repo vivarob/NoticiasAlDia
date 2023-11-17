@@ -25,11 +25,21 @@
         <ListView
             android:id="@+id/ListViewNoticias"
             android:layout_width="match_parent"
-            android:layout_height="729dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:divider="@android:color/darker_gray"
+            android:dividerHeight="1dp"
             android:layout_marginStart="1dp"
             android:layout_marginTop="1dp"
             android:layout_marginEnd="1dp"
             android:layout_marginBottom="1dp" />
+
+        <Button
+            android:id="@+id/botonCargarMas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="Cargar más" />
     </LinearLayout>
 
     <ProgressBar

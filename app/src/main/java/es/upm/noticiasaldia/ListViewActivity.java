@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
@@ -101,23 +102,37 @@ public class ListViewActivity extends AppCompatActivity implements RssReader.Rss
                                         Bitmap bitmap = Picasso.get().load(item.getMediaContent().getUrl()).get();
                                         noticia.setImagenUrl(item.getMediaContent().getUrl());
                                         noticia.setImagenBitmap(bitmap);
-                                        noticia.setMediaTitle(item.getMediaContent().getTitle());
-                                        noticia.setMediaDescription(item.getMediaContent().getDescription());
+                                        if(item.getMediaContent().getTitle() != null){
+                                            noticia.setMediaTitle(item.getMediaContent().getTitle());
+                                        } else {
+                                            noticia.setMediaTitle("NO Title");
+                                        }
+                                        if(item.getMediaContent().getDescription() != null){
+                                            noticia.setMediaDescription(item.getMediaContent().getDescription());
+                                        } else {
+                                            noticia.setMediaDescription("NO DESCRIPTION");
+                                        }
                                         Log.i("Tipo de contenido", "Imagen (jpg)");
-                                        Log.i("Tipo de contenido-titulo",item.getMediaContent().getTitle());
-                                        Log.i("Tipo de contenido-descripcion",item.getMediaContent().getDescription());
-                                        Log.i("Tipo de contenido-fecha",item.getMediaContent().getText());
+                                        Log.i("Tipo de contenido-titulo",noticia.getMediaTitle());
+                                        Log.i("Tipo de contenido-descripcion",noticia.getMediaDescription());
                                     } else if (item.getMediaContent().getUrl().toLowerCase().endsWith(".mp4")) {
                                         // Es un video (mp4)
                                         noticia.setImagenUrl("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlkSxmWpyxD95Jw3u_HHvv3J9tcc2GLbec9Xl4Qemj9uR8ATjDH3fae98sfT2KtsIxuGg&usqp=CAU");
                                         noticia.setImagenBitmap(Picasso.get().load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlkSxmWpyxD95Jw3u_HHvv3J9tcc2GLbec9Xl4Qemj9uR8ATjDH3fae98sfT2KtsIxuGg&usqp=CAU").get());
                                         noticia.setVideoUrl(item.getMediaContent().getUrl());
-                                        noticia.setMediaTitle(item.getMediaContent().getTitle());
-                                        noticia.setMediaDescription(item.getMediaContent().getDescription());
+                                        if(item.getMediaContent().getTitle() != null){
+                                            noticia.setMediaTitle(item.getMediaContent().getTitle());
+                                        } else {
+                                            noticia.setMediaTitle("NO Title");
+                                        }
+                                        if(item.getMediaContent().getDescription() != null){
+                                            noticia.setMediaDescription(item.getMediaContent().getDescription());
+                                        } else {
+                                            noticia.setMediaDescription("NO DESCRIPTION");
+                                        }
                                         Log.i("Tipo de contenido", "Video (mp4)");
-                                        Log.i("Tipo de contenido-titulo",item.getMediaContent().getTitle());
-                                        Log.i("Tipo de contenido-descripcion",item.getMediaContent().getDescription());
-                                        Log.i("Tipo de contenido-fecha",item.getMediaContent().getText());
+                                        Log.i("Tipo de contenido-titulo",noticia.getMediaTitle());
+                                        Log.i("Tipo de contenido-descripcion",noticia.getMediaDescription());
                                     } else {
                                         // Puedes manejar otros tipos de contenido aquí si es necesario
                                         noticia.setImagenUrl("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlkSxmWpyxD95Jw3u_HHvv3J9tcc2GLbec9Xl4Qemj9uR8ATjDH3fae98sfT2KtsIxuGg&usqp=CAU");
@@ -129,7 +144,6 @@ public class ListViewActivity extends AppCompatActivity implements RssReader.Rss
                                     noticia.setImagenUrl("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlkSxmWpyxD95Jw3u_HHvv3J9tcc2GLbec9Xl4Qemj9uR8ATjDH3fae98sfT2KtsIxuGg&usqp=CAU");
                                     noticia.setImagenBitmap(Picasso.get().load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlkSxmWpyxD95Jw3u_HHvv3J9tcc2GLbec9Xl4Qemj9uR8ATjDH3fae98sfT2KtsIxuGg&usqp=CAU").get());
                                 }
-
                             } else {
                                 Log.i("Error media", item.toString());
                                 noticia.setImagenUrl("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlkSxmWpyxD95Jw3u_HHvv3J9tcc2GLbec9Xl4Qemj9uR8ATjDH3fae98sfT2KtsIxuGg&usqp=CAU");
@@ -203,6 +217,14 @@ public class ListViewActivity extends AppCompatActivity implements RssReader.Rss
         ((NoticiasAdapter) listViewNoticias.getAdapter()).notifyDataSetChanged();
         progressBar = findViewById(R.id.progressBarListView);
         progressBar.setVisibility(View.INVISIBLE);
+        Button botonLista = findViewById(R.id.botonCargarMas);
+        listViewNoticias.addFooterView(botonLista);
+        botonLista.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("Boton Cargar mas", "se ha presionado el boton");
+            }
+        });
         listViewNoticias.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
